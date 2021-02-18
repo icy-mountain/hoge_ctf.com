@@ -54,7 +54,7 @@ const test_modal3 = new Modal({ genre: "crypt", title: "#2: From 0 to 127", text
 <p class="h5 row justify-content-center">(3) (130÷2)(224-3×47)(88 - 21)(73)(73)→?</p>
 <div class="font-weight-bold">HINT:</div><p class="d-flex justify-content-center font-weight-light"><sp>&nbsp→32</p>
 </div><br>` });
-const test_modal4 = new Modal({ genre: "app", title: "#1: Calculation", text: `<p>hello! you type below command in terminal!</p><samp class="d-block bg-dark text-white">nc 100.28.172.108 8888</samp><br>` });
+const test_modal4 = new Modal({ genre: "app", title: "#1: Calculation", text: `<p>hello! you type below command in terminal!</p><samp class="d-block bg-dark text-white">nc 3.88.122.62 8888</samp><br>` });
 const test_modal5 = new Modal({ genre: "riddle", title: "#1: Poo translation", text: `<p>Translate a below character using <strong>Alphabet</strong> and <strong>Number</strong> and <strong>Symbol</strong>.</p><p class="h1 d-flex justify-content-center">💩</p><br>` });
 const test_modal6 = new Modal({ genre: "riddle", title: "#2: EBCDIC-US", text: `<p>The flag written in <a href="./enc.txt" download="flag.txt">this file</a>. I have nothing to say anymore.</p>` });
 document.getElementById('san1').innerHTML = test_modal.make_md();
