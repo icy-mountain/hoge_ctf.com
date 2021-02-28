@@ -42,8 +42,8 @@ class Modal {
 const test_modal = new Modal({ genre: "sanity_check", title: "#1: Initial Challenge", text: `<p>hello! I\'ll confirm your <u>sanity.</u></p> <p>Please type \"HOGEHOGE\" below Flag box, and push \"Send Flag\"button.</p><br>` });
 const test_modal2 = new Modal({ genre: "crypt", title: "#1: To Decimal", text: `
 <div class="container">
-<p class="h5 row justify-content-center">(1) 7×V×4 → 1519</p>
-<p class="h5 row justify-content-center">(2) 2×24+12 → 34</p>
+<p class="h5 row justify-content-center">(1) 7×V×4 → 868</p>
+<p class="h5 row justify-content-center">(2) 2×24+12 → 35</p>
 <p class="h5 row justify-content-center">(3) D4C×RA9-8ZZ2Z4  → ?</p>
 <div class="font-weight-bold">HINT:</div><p class="d-flex justify-content-center font-weight-light">(1) 32→10 (2) 5→10 (3) 36→10</p>
 </div><br>` });
