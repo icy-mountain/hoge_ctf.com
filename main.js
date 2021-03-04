@@ -39,24 +39,24 @@ class Modal {
 </div>`;
     }
 }
-const test_modal = new Modal({ genre: "sanity_check", title: "#1: Initial Challenge", text: `<p>hello! I\'ll confirm your <u>sanity.</u></p> <p>Please type \"HOGEHOGE\" below Flag box, and push \"Send Flag\"button.</p><br>` });
-const test_modal2 = new Modal({ genre: "crypt", title: "#1: To Decimal", text: `
+const test_modal = new Modal({ genre: "sanity_check", title: "#1: まずはこれから", text: `<p>ハロー! これからあなたの正気度を確かめるよ!</p> <p>下のFlag boxに\"HOGEHOGE\"と入力して、\"Send Flag\"ボタンを押してね!</p><br>` });
+const test_modal2 = new Modal({ genre: "crypt", title: "#1: トゥ デシマル", text: `
 <div class="container">
-<p class="h5 row justify-content-center">(1) 7×V×4 → 1519</p>
-<p class="h5 row justify-content-center">(2) 2×24+12 → 34</p>
+<p class="h5 row justify-content-center">(1) 7×V×4 → 868</p>
+<p class="h5 row justify-content-center">(2) 2×24+12 → 35</p>
 <p class="h5 row justify-content-center">(3) D4C×RA9-8ZZ2Z4  → ?</p>
 <div class="font-weight-bold">HINT:</div><p class="d-flex justify-content-center font-weight-light">(1) 32→10 (2) 5→10 (3) 36→10</p>
 </div><br>` });
-const test_modal3 = new Modal({ genre: "crypt", title: "#2: From 0 to 127", text: `
+const test_modal3 = new Modal({ genre: "crypt", title: "#2: 0から127", text: `
 <div class="container">
 <p class="h5 row justify-content-center">(1) (18×8-7×11)(23×3-4)(252÷3)→CAT</p>
 <p class="h5 row justify-content-center">(2) (103-6)(89-3×19)(80)(66+35)(110)→a Pen</p>
 <p class="h5 row justify-content-center">(3) (130÷2)(224-3×47)(88 - 21)(73)(73)→?</p>
 <div class="font-weight-bold">HINT:</div><p class="d-flex justify-content-center font-weight-light"><sp>&nbsp→32</p>
 </div><br>` });
-const test_modal4 = new Modal({ genre: "app", title: "#1: Calculation", text: `<p>hello! you type below command in terminal!</p><samp class="d-block bg-dark text-white">nc 3.88.122.62 8888</samp><br>` });
-const test_modal5 = new Modal({ genre: "riddle", title: "#1: Poo translation", text: `<p>Translate a below character using <strong>Alphabet</strong> and <strong>Number</strong> and <strong>Symbol</strong>.</p><p class="h1 d-flex justify-content-center">💩</p><br>` });
-const test_modal6 = new Modal({ genre: "riddle", title: "#2: EBCDIC-US", text: `<p>The flag written in <a href="./enc.txt" download="flag.txt">this file</a>. I have nothing to say anymore.</p>` });
+const test_modal4 = new Modal({ genre: "app", title: "#1: 四則演算100本ノック", text: `<p>Macならターミナルを開いて下のコマンドを入力してね！Windowsだと対応してないのでムリです！WSL入れたらイケるよ。相談してね！</p><samp class="d-block bg-dark text-white">nc 3.88.122.62 8888</samp><br>` });
+const test_modal5 = new Modal({ genre: "riddle", title: "#1: うんこほんやく", text: `<p>下の絵文字を<strong>アルファベット</strong>と<strong>数字</strong>と<strong>記号</strong>に変換してね！</p><p class="h1 d-flex justify-content-center">💩</p><br>` });
+const test_modal6 = new Modal({ genre: "riddle", title: "#2: EBCDIC-US", text: `<p>Flagはこの<a href="./enc.txt" download="flag.txt">ファイル</a>に書いてあります。</p>` });
 document.getElementById('san1').innerHTML = test_modal.make_md();
 document.getElementById('cry1').innerHTML = test_modal2.make_md();
 document.getElementById('cry2').innerHTML = test_modal3.make_md();
@@ -75,7 +75,11 @@ function req_json(i) {
         return res.text();
     })
         .then((text) => {
-        alert(text);
+        if (text == "OK"){
+          alert("You are Correct! Congrats!!");
+        } else {
+          alert("残念。また、チャレンジしてね");
+        }
     })
         .catch((e) => {
         console.log(e.name); //エラーをキャッチし表示     
