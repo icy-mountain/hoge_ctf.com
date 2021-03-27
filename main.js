@@ -1,45 +1,46 @@
 "use strict";
-class Modal {
-    constructor(elements) {
-        this.elements = elements;
-        const N = 16;
-        this.id = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(N)))).substring(0, N).replace(/[^a-zA-Z]+/g, "a");
-        this.label = this.id + "_label";
-    }
-    make_md() {
-        return `
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#${this.id}">
-    ${this.elements.title}
-  </button>
+// class Modal {
+//     constructor(elements) {
+//         this.elements = elements;
+//         const N = 16;
+//         this.id = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(N)))).substring(0, N).replace(/[^a-zA-Z]+/g, "a");
+//         this.label = this.id + "_label";
+//     }
+//     make_md() {
+//         return `
+//   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#${this.id}">
+//     ${this.elements.title}
+//   </button>
 
-<!-- Modal -->
-<div class="modal" id="${this.id}" tabindex="-1" role="dialog" aria-labelledby="${this.label}" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="${this.label}">${this.elements.title}</h5>
-      </div>
-      <div class="modal-body">
-        ${this.elements.text}
-        <input type="hidden" class="genre" value=${this.elements.genre}>
-        <input type="hidden" class="num" value=${this.elements.title.split(":")[0].split("#")[1]}>
-        <input type="hidden" class="point" value=${this.elements.title.split("pt")[0].match(/[0-9]*[0-9]+$/)[0]}>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Flag</span>
-          </div>
-          <input type="text" class="flag_input" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary my_send_flag">Send Flag</button>
-      </div>
-    </div>
-  </div>
-</div>`;
-    }
-}
+// <!-- Modal -->
+// <div class="modal" id="${this.id}" tabindex="-1" role="dialog" aria-labelledby="${this.label}" aria-hidden="true">
+//   <div class="modal-dialog modal-dialog-centered" role="document">
+//     <div class="modal-content">
+//       <div class="modal-header">
+//         <h5 class="modal-title" id="${this.label}">${this.elements.title}</h5>
+//       </div>
+//       <div class="modal-body">
+//         ${this.elements.text}
+//         <input type="hidden" class="genre" value=${this.elements.genre}>
+//         <input type="hidden" class="num" value=${this.elements.title.split(":")[0].split("#")[1]}>
+//         <input type="hidden" class="point" value=${this.elements.title.split("pt")[0].match(/[0-9]*[0-9]+$/)[0]}>
+//         <div class="input-group">
+//           <div class="input-group-prepend">
+//             <span class="input-group-text">Flag</span>
+//           </div>
+//           <input type="text" class="flag_input" />
+//         </div>
+//       </div>
+//       <div class="modal-footer">
+//         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+//         <button type="button" class="btn btn-primary my_send_flag">Send Flag</button>
+//       </div>
+//     </div>
+//   </div>
+// </div>`;
+//     }
+// }
+import { Modal } from "./modal.js";
 const test_modal = new Modal({ genre: "sanity_check", title: "#1: まずはこれから 10pt", text: `<p>ハロー! これからあなたの正気度を確かめるよ!</p> <p>下のFlag boxに\"HOGEHOGE\"と入力して、\"Send Flag\"ボタンを押してね!</p><br>` });
 const test_modal2 = new Modal({ genre: "crypt", title: "#1: トゥ デシマル 50pt", text: `
 <div class="container">
@@ -64,6 +65,11 @@ document.getElementById('cry2').innerHTML = test_modal3.make_md();
 document.getElementById('app1').innerHTML = test_modal4.make_md();
 document.getElementById('rid1').innerHTML = test_modal5.make_md();
 document.getElementById('rid2').innerHTML = test_modal6.make_md();
+
+function init() {
+  
+}
+
 function req_json(i) {
     const flag_inputs = document.getElementsByClassName("flag_input");
     const genres = document.getElementsByClassName("genre");
@@ -121,6 +127,8 @@ function score_counter() {
     delay: 2000
   });
 }
+
+
 send_func();
 console.log(set_storage("score", "0"));
 document.getElementById('my_footer').innerHTML = `<div class="d-flex d-block justify-content-center bg-transparent">
