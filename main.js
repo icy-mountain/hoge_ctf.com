@@ -1,4 +1,3 @@
-// "use strict";
 import { Modal } from "./modal.js";
 const test_modal = new Modal({ genre: "sanity_check", title: "#1: まずはこれから 10pt", text: `<p>ハロー! これからあなたの正気度を確かめるよ!</p> <p>下のFlag boxに\"HOGEHOGE\"と入力して、\"Send Flag\"ボタンを押してね!</p><br>` });
 const test_modal2 = new Modal({ genre: "crypt", title: "#1: トゥ デシマル 50pt", text: `
