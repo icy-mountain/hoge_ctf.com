@@ -8,7 +8,7 @@ export class Modal {
     }
     make_md() {
         return `
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#${this.id}">
+  <button type="button" class="my_title btn btn-primary" data-toggle="modal" data-target="#${this.id}">
     ${this.elements.title}
   </button>
 

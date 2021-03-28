@@ -25,14 +25,24 @@ document.getElementById('rid1').innerHTML = test_modal5.make_md();
 document.getElementById('rid2').innerHTML = test_modal6.make_md();
 
 function init() {
-  const obj = {"idx":"100"};
-  console.log(set_storage("caught", JSON.stringify(obj)));
-  const caught = JSON.parse(get_storage("caught"));
+  let caught = get_storage("caught");
+  const btn_title = document.getElementsByClassName("my_title");
+  console.log(caught);
+  console.log(btn_title);
+  let score = 0;
+
+  if (caught === undefined) {
+    set_storage("caught", JSON.stringify({}));
+    return;
+  }
+  caught = JSON.parse(caught);
   Object.keys(caught).forEach(val => {
-    let key = val;
-    let value = list[val];
-    console.log(`${key} : ${value}`);
+    let idx = parseInt(val);
+    score += parseInt(caught[val]);
+    btn_title[idx].className = "my_title btn btn-secondary";
   });
+  set_storage("score", score.toString());
+  score_counter();
 }
 function req_json(i) {
     const flag_inputs = document.getElementsByClassName("flag_input");
@@ -40,6 +50,7 @@ function req_json(i) {
     const nums = document.getElementsByClassName("num");
     let param = "?genre=" + genres[i].value + "&num=" + nums[i].value + "&flag=" + flag_inputs[i].value;
     let url = 'https://evening-anchorage-52082.herokuapp.com/scoring' + param + "&pretty";
+  
     fetch(url)
         .then((res) => {
         return res.text();
@@ -63,17 +74,22 @@ function send_func() {
 }
 function if_correct(idx) {
   alert("You are Correct! Congrats!!");
-  const btn_pri = document.getElementsByClassName("btn-primary");
+  const btn_title = document.getElementsByClassName("my_title");
   const points = document.getElementsByClassName("point");
+  const caught = JSON.parse(get_storage("caught"));
   let score = get_storage("score");
 
-  btn_pri[idx*2].className = "btn btn-secondary";
+  if (Object.keys(caught).includes(idx.toString()))
+    return;
+  btn_title[idx].className = "my_title btn btn-secondary";
   if (score !== undefined) 
     score = (parseInt(score) + parseInt(points[idx].value)).toString();
   if (score === undefined)
-    score = "0";
-  console.log(set_storage("score", score));
+    score = points[idx].value;
+  set_storage("score", score);
   score_counter();
+  caught[idx.toString()] = points[idx].value;
+  set_storage("caught", JSON.stringify(caught));
 }
 function score_counter() {
   const score = get_storage("score");
@@ -92,8 +108,8 @@ function score_counter() {
   });
 }
 
-
-send_func();
-console.log(set_storage("score", "0"));
 document.getElementById('my_footer').innerHTML = `<div class="d-flex d-block justify-content-center bg-transparent">
 <span class="d-inline h1 bg-light text-bg">your score: <span id="score_counter">0</span></span></div>`
+init();
+
+send_func();
